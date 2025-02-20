@@ -24,6 +24,7 @@ export default defineUserConfig({
       {
         text: 'Guide',
         children: [
+          '/introduction',
           '/get-started',
           '/serializers',
           '/views',

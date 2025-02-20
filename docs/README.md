@@ -9,7 +9,7 @@ actions:
     type: primary
 
   - text: Introduction
-    link: https://vuejs.press/guide/introduction.html
+    link: /introduction.html
     type: secondary
 
 features:
