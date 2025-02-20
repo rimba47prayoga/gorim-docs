@@ -2,6 +2,8 @@
 
 Gorim is a powerful web framework for Go developers who value both productivity and code quality. Inspired by Django REST Framework, it brings battle-tested patterns and conventions to the Go ecosystem while maintaining Go's performance and type safety advantages.
 
+It built on top of [Echo](https://echo.labstack.com/).
+
 ## Key Features
 
 ### Django-Inspired Design

@@ -1,8 +1,10 @@
 ---
 home: true
-title: Home
-description: "The web framework for perfectionists with deadlines."
-heroImage: https://vuejs.press/images/hero.png
+title: A Django-Inspired Go Framework for perfectionists with deadlines.
+description: "Gorim is a high-level Rest framework that encourages rapid development. It is built on top of the Echo framework and provides a robust and flexible foundation for building web applications."
+heroImage: /Gorim-logo.png
+heroImageDark: /Gorim-logo-dark.png
+heroText: A Django-Inspired Go Framework for perfectionists with deadlines.
 actions:
   - text: Get Started
     link: /get-started.html
