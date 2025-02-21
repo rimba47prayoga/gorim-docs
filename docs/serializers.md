@@ -2,7 +2,7 @@
 title: Serializers
 ---
 
-# Serializers in Gorim
+# Serializers
 
 Gorim provides a powerful way to convert JSON to struct with complex validation and serialization logic.
 

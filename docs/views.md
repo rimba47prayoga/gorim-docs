@@ -2,7 +2,7 @@
 title: Views
 ---
 
-# Views in Gorim
+# Views
 
 Gorim uses class-based views similar to [django-rest-framework](https://www.django-rest-framework.org/api-guide/views/).
 

@@ -1,0 +1,11 @@
+#app {
+  .vp-home {
+    .vp-hero-image {
+        max-height: 180px;
+        @media (max-width: 768px) {
+            width: auto;
+            max-height: 120px;
+        }
+    }
+  }
+}

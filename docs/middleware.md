@@ -2,7 +2,7 @@
 title: Middleware
 ---
 
-# Middleware in Gorim
+# Middleware
 
 Gorim uses struct-based middleware.
 

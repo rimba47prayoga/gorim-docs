@@ -2,7 +2,7 @@
 title: Pagination
 ---
 
-# Pagination in Gorim
+# Pagination
 
 Gorim adopts [django-rest-framework](https://www.django-rest-framework.org/api-guide/pagination/) to provide a powerful pagination system that allows you to paginate querysets based on the request parameters.
 

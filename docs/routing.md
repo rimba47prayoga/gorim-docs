@@ -2,5 +2,5 @@
 title: Routing
 ---
 
-# Routing in Gorim
+# Routing
 

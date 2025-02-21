@@ -2,7 +2,7 @@
 title: Permissions
 ---
 
-# Permissions in Gorim
+# Permissions
 
 Gorim adopts the concept of permissions from [django-rest-framework](https://www.django-rest-framework.org/api-guide/permissions/).
 

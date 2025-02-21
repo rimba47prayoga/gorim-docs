@@ -2,7 +2,7 @@
 title: Filter
 ---
 
-# Filter in Gorim
+# Filter
 
 Gorim adopts [django-filter](https://github.com/carltongibson/django-filter) to provide a powerful filtering system that allows you to filter querysets based on the request parameters with seamless integration with the GenericViewSet.
 
