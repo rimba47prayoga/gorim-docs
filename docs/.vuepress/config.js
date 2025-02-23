@@ -13,9 +13,18 @@ export default defineUserConfig({
     ['link', { rel: 'icon', href: '/Gorim-favicon.png', type: 'image/png' }],
     ['meta', { name: 'robots', content: 'index, follow' }],
     ['meta', { name: 'go-import', content: 'gorim.org/gorim git https://github.com/rimba47prayoga/gorim' }],
-    ['meta', { name: 'go-import', content: 'gorim.org/gorim-cli git https://github.com/rimba47prayoga/gorim-cli' }],
-    ['meta', { name: 'http-equiv', content: '0; url=https://github.com/rimba47prayoga/gorim' }],
-    ['meta', { name: 'http-equiv', content: '0; url=https://github.com/rimba47prayoga/gorim-cli' }]
+    [
+      'script',
+      {},
+      `
+      (function() {
+        var meta = document.createElement("meta");
+        meta.name = "go-import";
+        meta.content = "gorim.org/gorim-cli git https://github.com/rimba47prayoga/gorim-cli";
+        document.head.appendChild(meta);
+      })();
+      `,
+    ],
   ],
 
   theme: defaultTheme({
