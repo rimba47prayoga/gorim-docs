@@ -13,7 +13,9 @@ export default defineUserConfig({
     ['link', { rel: 'icon', href: '/Gorim-favicon.png', type: 'image/png' }],
     ['meta', { name: 'robots', content: 'index, follow' }],
     ['meta', { name: 'go-import', content: 'gorim.org/gorim git https://github.com/rimba47prayoga/gorim' }],
-    ['meta', { name: 'http-equiv', content: '0; url=https://github.com/rimba47prayoga/gorim' }]
+    ['meta', { name: 'go-import', content: 'gorim.org/gorim-cli git https://github.com/rimba47prayoga/gorim-cli' }],
+    ['meta', { name: 'http-equiv', content: '0; url=https://github.com/rimba47prayoga/gorim' }],
+    ['meta', { name: 'http-equiv', content: '0; url=https://github.com/rimba47prayoga/gorim-cli' }]
   ],
 
   theme: defaultTheme({
@@ -76,7 +78,6 @@ export default defineUserConfig({
       changefreq: 'daily',
       excludeUrls: ['/404.html'],
       jsonLd: (jsonLd, page, app) => {
-        console.log(jsonLd)
         return {
           "@context": "https://schema.org",
           "@graph": [
