@@ -10,7 +10,7 @@ export default defineUserConfig({
   title: 'Gorim',
   description: 'Gorim is a high-level Rest framework that encourages rapid development. It is built on top of the Echo framework and provides a robust and flexible foundation for building web applications.',
   head: [
-    ['link', { rel: 'icon', href: '/Gorim-logo-only.png', type: 'image/png' }],
+    ['link', { rel: 'icon', href: '/Gorim-favicon.png', type: 'image/png' }],
     ['meta', { name: 'robots', content: 'index, follow' }],
     ['meta', { name: 'go-import', content: 'gorim.org/gorim git https://github.com/rimba47prayoga/gorim' }],
     ['meta', { name: 'http-equiv', content: '0; url=https://github.com/rimba47prayoga/gorim' }]
