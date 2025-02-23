@@ -1,9 +1,7 @@
 {
-    "routes": [
-      { "src": "/(.*)", "dest": "/docs/.vuepress/dist/$1" }
-    ],
-    "rewrites": [
-      { "source": "/gorim", "destination": "/gorim.html" },
-      { "source": "/gorim-cli", "destination": "/gorim-cli.html" }
+  "rewrites": [
+    { "source": "/gorim", "destination": "/docs/.vuepress/dist/gorim.html" },
+    { "source": "/gorim-cli", "destination": "/docs/.vuepress/dist/gorim-cli.html" },
+    { "source": "/(.*)", "destination": "/docs/.vuepress/dist/$1" }
   ]
-  }
+}
