@@ -5,31 +5,37 @@ import fs from "fs";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const filePath = path.join(__dirname, "../docs/.vuepress/dist/index.html");
-console.log("Processing file:", filePath);
+const BUILD_DIR = path.join(__dirname, "../docs/.vuepress/dist");
+const FILES_TO_UPDATE = ["index.html", "404.html"]; // Inject into both
 
-fs.readFile(filePath, "utf8", (err, data) => {
-    if (err) {
-        console.error("Error reading file:", err);
+const META_TAG = `<meta name="go-import" content="gorim.org/gorim git https://github.com/rimba47prayoga/gorim">
+<meta name="go-import" content="gorim.org/gorim-cli git https://github.com/rimba47prayoga/gorim-cli">`;
+
+FILES_TO_UPDATE.forEach((file) => {
+    const filePath = path.join(BUILD_DIR, file);
+    console.log(`Processing file: ${filePath}`);
+
+    if (!fs.existsSync(filePath)) {
+        console.error(`❌ File not found: ${filePath}`);
         return;
     }
 
-    if (!data.includes('go-import')) {
-        console.error("Meta tag not found in index.html");
+    let data = fs.readFileSync(filePath, "utf8");
+
+    if (!data.includes("go-import")) {
+        console.error(`⚠️ Meta tag not found in ${file}`);
         return;
     }
 
-    const updatedData = data.replace(
-        '<meta name="go-import" content="gorim.org/gorim git https://github.com/rimba47prayoga/gorim">',
-        `<meta name="go-import" content="gorim.org/gorim git https://github.com/rimba47prayoga/gorim">
-     <meta name="go-import" content="gorim.org/gorim-cli git https://github.com/rimba47prayoga/gorim-cli">`
-    );
+    if (!data.includes(META_TAG)) {
+        data = data.replace(
+            '<meta name="go-import" content="gorim.org/gorim git https://github.com/rimba47prayoga/gorim">',
+            META_TAG
+        );
 
-    fs.writeFile(filePath, updatedData, "utf8", (writeErr) => {
-        if (writeErr) {
-            console.error("Error writing file:", writeErr);
-        } else {
-            console.log("✅ Meta tag updated successfully!");
-        }
-    });
+        fs.writeFileSync(filePath, data, "utf8");
+        console.log(`✅ Meta tag updated successfully in ${file}`);
+    } else {
+        console.log(`⚠️ Meta tag already exists in ${file}, skipping.`);
+    }
 });
