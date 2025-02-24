@@ -4,72 +4,53 @@ This guide will help you set up and create your first Gorim application.
 
 ## Prerequisites
 
-- Go 1.22.0 or higher installed on your system
+- Go 1.22.0 or higher
 - Basic understanding of Go programming
 - Familiarity with web development concepts
 
-## Installation
+## Quick Start
 
-Install Gorim using the Go package manager:
+1. Install the CLI:
 ```sh
-go get gorim.org/gorim
+go install gorim.org/gorim-cli@latest
 ```
 
-## Creating Your First Project
-
-### 1. Project Structure
-
-Create a new directory for your project and initialize a Go module:
-
+2. Create a new project:
 ```sh
-mkdir myproject
+gorim-cli startproject myproject
 cd myproject
-go mod init myproject
+gorim-cli startapp user
 ```
 
-A typical Gorim project structure looks like this:
-
+This creates:
 ```
 myproject/
+├── api/          # API routes
+├── settings/     # Configuration
+├── migrations/   # Database migrations
+├── user/         # Your new app
 ├── main.go
-├── settings/
-│   └── config.go
-├── user/
-│   ├── views.go
-│   ├── router.go
-│   └── serializers.go
-├── models/
-│   └── user.go
-└── migrations/
+└── .env
 ```
 
-### 2. Basic Setup
+## Basic Setup
 
-Create a `config.go` file in the settings directory:
+### 1. Database Setup
+
+Gorim will use SQLite as default database. 
+
+You can change it to your preferred database by updating the database settings in `myproject/settings/config.go`.
 
 ```go
-package settings
-
-import "gorim.org/gorim"
-
-var Settings = &gorim.Settings{
-    Debug: true,
-    Database: gorim.DatabaseSettings{
-        Driver:   "postgres",
-        Host:     "localhost",
-        Port:     5432,
-        Name:     "mydb",
-        User:     "postgres",
-        Password: "password",
-    },
-    Server: gorim.ServerSettings{
-        Host: "localhost",
-        Port: 8000,
-    },
+func Configure() {
+	// ...
+	DATABASE = conf.Database{
+		Name:     conf.GetEnv("DB_NAME", "sqlite.db"),
+	}
 }
 ```
 
-### 3. Creating a Simple Model
+### 2. Creating a Simple Model
 
 Create a model in `myproject/models/user.go`:
 
@@ -85,9 +66,22 @@ type User struct {
 }
 ```
 
-### 4. Creating a Simple Serializer
+Register the model to `myproject/migrations/register.go`:
 
-Create a serializer in `myproject/user/serializers.go`:
+```go
+package migrations
+
+func Register() []interface{} {
+	return []interface{}{
+		// Add your models here
+		models.User{},
+	}
+}
+```
+
+### 3. Creating a Simple Serializer
+
+Create a serializer in `myproject/apps/user/serializers.go`:
 
 ```go
 package user
@@ -105,9 +99,9 @@ type UserSerializer struct {
 
 ```
 
-### 5. Creating a Simple View
+### 4. Creating a Simple View
 
-Create a view in `myproject/user/views.go`:
+Create a view in `myproject/apps/user/views.go`:
 
 ```go
 package user
@@ -134,9 +128,9 @@ func NewUserViewSet() *UserViewSet {
 }
 ```
 
-### 6. Setting Up Routes
+### 5. Setting Up Routes
 
-In your `myproject/user/router.go`:
+In your `myproject/apps/user/router.go`:
 
 ```go
 package user
@@ -154,6 +148,23 @@ func RouterUser(group *gorim.Group) {
 }
 ```
 
+Add to `myproject/api/routes.go`:
+
+```go
+package api
+
+import (
+	"myproject/api/user"
+	"myproject/settings"
+)
+
+func APIRoutes() {
+	api := settings.Server.Group("/api/v1")
+	// Add your routes here
+	user.RouterUser(api)
+}
+```
+
 ## Running Your Application
 
 1. Apply migrations (if any):
@@ -168,13 +179,12 @@ go run main.go runserver
 
 Your application will be available at `http://localhost:8000`.
 
-## Next Steps
+## Learn More
+- [Serializers](./serializers.md)
+- [Views](./views.md)
+- [Permissions](./permissions.md)
+- [Migrations](./migrations.md)
 
-- Learn about [Serializers](./serializers.md)
-- Explore [Class-Based Views](./views.md)
-- Understand [Permissions](./permissions.md)
-- Work with [Migrations](./migrations.md)
-
-## Need Help?
-- Report issues on [GitHub](https://github.com/rimba47prayoga/gorim/issues)
-- Join the community [Discord](https://discord.gg/gorim)
+## Support
+- [GitHub Issues](https://github.com/rimba47prayoga/gorim/issues)
+- [Discord Community](https://discord.gg/gorim)
